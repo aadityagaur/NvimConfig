@@ -702,7 +702,15 @@ require('lazy').setup({
       --  See `:help lsp-config` for information about keys and how to configure
       ---@type table<string, vim.lsp.Config>
       local servers = {
-        -- clangd = {},
+        clangd = {
+          cmd = {
+            'clangd',
+            '--background-index',
+            '--clang-tidy',
+            '--header-insertion=iwyu',
+            '--completion-style=detailed',
+          },
+        },
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
@@ -715,7 +723,7 @@ require('lazy').setup({
 
         stylua = {}, -- Used to format Lua code
 
-        -- Special Lua Config, as recommended by neovim help docs
+        -- Special Lua Config, as recommended by neovim help docsr
         lua_ls = {
           on_init = function(client)
             if client.workspace_folders then
